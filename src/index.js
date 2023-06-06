@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {PORT} = require('./config/serverConfig');    
+const {PORT} = require('./config/serverConfig');   
+ 
 const CityRepository = require('./repositories/city-repositories');
 const city = require('./models/city');
+
 const setupAndStartServer = async ()=>{
     const app = express();
     app.use(bodyParser.json());
