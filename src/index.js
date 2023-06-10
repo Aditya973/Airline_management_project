@@ -5,7 +5,7 @@ const ApiRoutes = require('./routes/index');
 const dotenv = require('dotenv');
 const db = require('./models/index');
 
-const {City,Airport} = require('./models/index');
+const {City,Airplane} = require('./models/index');
  
 dotenv.config();
 
