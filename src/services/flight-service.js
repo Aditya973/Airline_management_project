@@ -22,6 +22,16 @@ class FlightService{
         }
     }
 
+    async getFlight(flightId){
+        try {
+            const flight = this.flightRepository.getFlight(flightId);
+            return flight;
+        } catch (error) {
+            console.log("something went wrong on the service layer");
+            throw {error};
+        }
+    }
+
     async getAllFlightData(data){
         try{
             const flights = await this.flightRepository.getAllFlights(data);
@@ -31,6 +41,16 @@ class FlightService{
             console.log("something went wrong on the service layer");
             throw {error};
         }
+    }
+
+    async updateFlight(flightId,data){
+         try {
+            const response = await this.flightRepository.updateFlight(flightId,data);
+            return response;
+         } catch (error) {
+            console.log("something went wrong on the service layer");
+            throw {error};
+         }
     }
 }
 

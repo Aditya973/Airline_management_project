@@ -1,5 +1,9 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const obj = {
-    PORT : 3000
+    PORT : process.env.PORT
 }
 
 module.exports = obj;
