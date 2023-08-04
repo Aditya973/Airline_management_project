@@ -65,6 +65,14 @@ class AirportRepository{
                 });
                 return airports;
             }
+            if(filter.cityId){
+                const airports = await Airport.findAll({
+                    where:{
+                        cityId:filter.cityId
+                    }
+                });
+                return airports;
+            }
             const airports = await Airport.findAll();
             return airports;
         }

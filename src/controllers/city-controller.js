@@ -87,6 +87,7 @@ const update = async (req,res) => {
 }
 
 const getAll = async (req,res) =>{
+    // res.header("Access-Control-Allow-Origin", "*");
     try{
         const cities = await cityService.getAll(req.query);
         return res.status(201).json({

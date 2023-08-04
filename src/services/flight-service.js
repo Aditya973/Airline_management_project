@@ -1,10 +1,11 @@
-const {FlightRepository,AirplaneRepository} = require('../repositories/index');
+const {FlightRepository,AirplaneRepository,AirportRepository} = require('../repositories/index');
 const { compareTime } = require('../utils/helper');
 
 class FlightService{
     constructor(){
         this.flightRepository = new FlightRepository();
         this.airplaneRepostory = new AirplaneRepository();
+        this.airportRepository = new AirportRepository();
     }
     
     async createFlight(data){
@@ -51,6 +52,37 @@ class FlightService{
             console.log("something went wrong on the service layer");
             throw {error};
          }
+    }
+
+    async getAllFlightByCities(data){
+        try {
+            const departureCityId = data.departureCityId;
+            const arrivalCityId = data.arrivalCityId;
+            const departureAirports = await this.airportRepository.getAllAirports({cityId:departureCityId});
+            // console.log(departureAirports);
+            const arrivalAirports = await this.airportRepository.getAllAirports({cityId:arrivalCityId});
+            // console.log(arrivalAirports);
+            let totalFlights = [];
+            for(const fromAirport of departureAirports){
+                for(const toAirport of arrivalAirports){
+                    let flights = await this.flightRepository.getAllFlights({
+                        departureAirportId:fromAirport.id,
+                        arrivalAirportId: toAirport.id
+                    });
+                    let flightsData = flights.map((flight)=>flight.dataValues);
+                    // console.log(flightsData);
+                    flightsData.forEach((item)=>{
+                        totalFlights.push(item);
+                    })
+                }
+            }
+            // console.log(totalFlights);
+            return totalFlights;
+        } 
+        catch (error) {
+            console.log("something went wrong on the service layer");
+            throw {error};
+        }
     }
 }
 

@@ -53,7 +53,13 @@ const get = async (req,res) => {
 }
 const update = async (req,res) => {
     try {
-        
+        const airplane = await airplaneService.update(req.params.id,req.body);
+        return res.status(SuccessCodes.OK).json({
+            data : airplane,
+            success: true,
+            message: 'successfully updated',
+            err: {}
+        })
     } catch (error) {
         return res.status(500).json({
             data : {},
@@ -65,7 +71,13 @@ const update = async (req,res) => {
 }
 const getAll = async (req,res) => {
     try {
-        
+        const airplanes = await airplaneService.getAll();
+        return res.status(SuccessCodes.OK).json({
+            data : airplanes,
+            success: true,
+            message: 'successfully fetched',
+            err: {}
+        })
     } catch (error) {
         return res.status(500).json({
             data : {},

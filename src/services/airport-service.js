@@ -51,7 +51,7 @@ class AirportService{
 
     async getAllAirports(filter){
         try{
-            const airports = await this.airportRepository.getAllAirports({name:filter.name});
+            const airports = await this.airportRepository.getAllAirports({name:filter.name,cityId:filter.cityId});
             return airports;
         }
         catch(error){

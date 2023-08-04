@@ -20,8 +20,10 @@ router.get('/airport',AirportController.getAll);
 router.post('/flights',FlightMiddleware.validateCreateFlight,FlightController.create);
 router.get('/flights',FlightController.getAll);
 router.post('/airplane',AirplaneController.create);
+router.get('/airplane',AirplaneController.getAll);
 router.get('/airplane/:id',AirplaneController.get);
 router.get('/flight/:id',FlightController.get);
+router.get('/flight',FlightController.getAllFlightsBetweenCities);
 router.patch('/flight/:id',FlightController.update);
 
 module.exports = router;
