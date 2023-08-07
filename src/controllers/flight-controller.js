@@ -31,7 +31,24 @@ const create = async (req,res) => {
         })
     }
 }
-
+const destroy = async (req,res) => {
+    try {
+        const response = await flightService.deleteFlight(req.params.id);
+        return res.status(SuccessCodes.OK).json({
+            data : true,
+            success : true,
+            message : 'successfully deleted the flight',
+            err : {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message: 'failed to delete the flights',
+            err: error
+        })
+    }
+}
 const getAll = async (req,res)=>{
     try {
         const flights = await flightService.getAllFlightData(req.query);
@@ -107,5 +124,5 @@ const getAllFlightsBetweenCities = async(req,res) => {
         })
     }
 }
-module.exports = {create,getAll,get,update,getAllFlightsBetweenCities};
+module.exports = {create,getAll,get,update,getAllFlightsBetweenCities,destroy};
 

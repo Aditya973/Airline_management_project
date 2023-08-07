@@ -1,6 +1,10 @@
 const { Flight } = require('../models/index');
 const { Op } = require('sequelize');
-class FlightRepository{
+const CrudRepository = require('../repositories/crud-repositories');
+class FlightRepository extends CrudRepository{
+    constructor(){
+        super(Flight);
+    }
     #createFilter(data){
         let filter = {};
         if(data.departureAirportId){
@@ -55,7 +59,6 @@ class FlightRepository{
         }
 
     }
-
     async updateFlight(flightId,data){
         try {
             await Flight.update(data,{

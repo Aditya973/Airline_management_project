@@ -25,5 +25,6 @@ router.get('/airplane/:id',AirplaneController.get);
 router.get('/flight/:id',FlightController.get);
 router.get('/flight',FlightController.getAllFlightsBetweenCities);
 router.patch('/flight/:id',FlightController.update);
+router.delete('/flight/:id',FlightController.destroy);
 
 module.exports = router;
