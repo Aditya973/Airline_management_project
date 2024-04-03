@@ -25,15 +25,6 @@ const setupAndStartServer = async ()=>{
         if(process.env.SYNC_DB){
             db.sequelize.sync({alter:true});
         }
-        // const city = await City.findOne({
-        //     where:{
-        //         id:2
-        //     }
-        // });
-        // const airports = await city.getAirports();
-        // console.log(airports);
-        // const flights = await flightService.getAllFlightByCities(2,15);
-        // console.log(flights);
     });
 }
 setupAndStartServer();
